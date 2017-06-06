@@ -8,7 +8,7 @@ import java.util.List;
 import CustomAnnotation.CustomAnnotation;
 import CustomAnnotation.Order;
 
-public class ReflectionUtil {
+public class Copy_2_of_ReflectionUtil {
 
 	public static void output(Object obj) throws Exception {
 		if (obj == null) {
@@ -117,16 +117,19 @@ public class ReflectionUtil {
 
 //            field.getGenericType().getClass()
             ParameterizedType paramType = (ParameterizedType)field.getGenericType();
-//            paramType = (ParameterizedType)paramType.getActualTypeArguments()[0];
+            paramType = (ParameterizedType)paramType.getActualTypeArguments()[0];
+            Class<?> actualClass =(Class<?>)paramType.getActualTypeArguments()[0];
 
-            Class<?> actualClass = null;
+//            ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0]
+//
+//			for(ParameterizedType i : paramType.getActualTypeArguments()[0]) {
+//
+//				System.out.println(i + " : " + i.getClass());
+//
+//				i.getClass().getGenericInterfaces()
+//
+//			}
 
-            if(paramType instanceof ParameterizedType) {
-            	paramType = (ParameterizedType)paramType.getActualTypeArguments()[0];
-                actualClass =(Class<?>)paramType.getActualTypeArguments()[0];
-            } else {
-                actualClass =(Class<?>)paramType.getActualTypeArguments()[0];
-            }
 
             if (actualClass == Integer.class || actualClass == int.class) {
 
@@ -135,12 +138,16 @@ public class ReflectionUtil {
                     System.out.println(String.format("value = %d", s));
                 }
 
+            } else if (actualClass == List.class) {
+
+            	Object aaa = field.get(obj);
+
             } else {
                 List<Object> lists = (List<Object>) field.get(obj);
                 for (Object o : lists) {
 
-                    Field[] fields = ReflectionUtil.sortFld2(o);
-                    ReflectionUtil.getFldData(o, fields);
+                    Field[] fields = Copy_2_of_ReflectionUtil.sortFld2(o);
+                    Copy_2_of_ReflectionUtil.getFldData(o, fields);
 
                 }
             }
@@ -148,8 +155,8 @@ public class ReflectionUtil {
         else {
 
 	        Object o = (Object) field.get(obj);
-            Field[] fields = ReflectionUtil.sortFld2(o);
-            ReflectionUtil.getFldData(o, fields);
+            Field[] fields = Copy_2_of_ReflectionUtil.sortFld2(o);
+            Copy_2_of_ReflectionUtil.getFldData(o, fields);
         }
 
 

@@ -1,8 +1,17 @@
 package Dto;
+import java.io.Serializable;
+
 import CustomAnnotation.CustomAnnotation;
 import CustomAnnotation.Order;
 
-public class SubHoge {
+public class SubHoge implements Serializable {
+
+
+	@Override
+	public String toString() {
+		return "SubHoge [subname=" + subname + ", subvalue=" + subvalue + "]";
+	}
+
 	@Order(value=2)
     @CustomAnnotation("a")
     private String subname;

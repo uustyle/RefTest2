@@ -41,13 +41,13 @@ public class RefMain {
 		List<List<Integer>> intList2 = new ArrayList<List<Integer>>();
 		intList2.add(intList);
 
-		Field field = h.getClass().getDeclaredField("intList2");
-		boolean ret = ReflectionUtil.isNumber(field.getType(), h, field);
-System.out.println("ret=" + ret);
+//		Field field = h.getClass().getDeclaredField("intList2");
+//		boolean ret = ReflectionUtil.isNumber(field.getType(), h, field);
+//System.out.println("ret=" + ret);
 
 
-//		Field[] fields = ReflectionUtil.sortFld2(h);
-//		ReflectionUtil.getFldData(h, fields);
+		Field[] fields = ReflectionUtil.sortFld2(h);
+		ReflectionUtil.getFldData(h, fields);
 
 	}
 

@@ -8,7 +8,7 @@ import java.util.List;
 import CustomAnnotation.CustomAnnotation;
 import CustomAnnotation.Order;
 
-public class ReflectionUtil {
+public class CopyOfReflectionUtil {
 
 	public static void output(Object obj) throws Exception {
 		if (obj == null) {
@@ -114,27 +114,14 @@ public class ReflectionUtil {
                 ((ParameterizedType) field.getGenericType())
                     .getActualTypeArguments()[0]));
             @SuppressWarnings("rawtypes")
-
-//            field.getGenericType().getClass()
-            ParameterizedType paramType = (ParameterizedType)field.getGenericType();
-//            paramType = (ParameterizedType)paramType.getActualTypeArguments()[0];
-
-            Class<?> actualClass = null;
-
-            if(paramType instanceof ParameterizedType) {
-            	paramType = (ParameterizedType)paramType.getActualTypeArguments()[0];
-                actualClass =(Class<?>)paramType.getActualTypeArguments()[0];
-            } else {
-                actualClass =(Class<?>)paramType.getActualTypeArguments()[0];
-            }
-
-            if (actualClass == Integer.class || actualClass == int.class) {
-
-                List<Integer> lists = (List<Integer>) field.get(obj);
-                for (Integer s : lists) {
-                    System.out.println(String.format("value = %d", s));
+            Class actualClass =
+                ((Class) ((ParameterizedType) field.getGenericType())
+                    .getActualTypeArguments()[0]);
+            if (actualClass == String.class) {
+                List<String> lists = (List<String>) field.get(obj);
+                for (String s : lists) {
+                    System.out.println(String.format("value = %s", s));
                 }
-
             } else {
                 List<Object> lists = (List<Object>) field.get(obj);
                 for (Object o : lists) {

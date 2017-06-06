@@ -1,10 +1,18 @@
 package Dto;
+import java.io.Serializable;
 import java.util.List;
 
 import CustomAnnotation.CustomAnnotation;
 import CustomAnnotation.Order;
 
-public class Hoge {
+public class Hoge2 implements Serializable {
+
+	@Override
+	public String toString() {
+		return "Hoge2 [name=" + name + ", value=" + value + ", subHoge="
+				+ subHoge + ", subHogeList=" + subHogeList + "]";
+	}
+
 	@Order(value=4)
     @CustomAnnotation("a")
     private String name;
@@ -20,15 +28,6 @@ public class Hoge {
 	@Order(value=3)
     @CustomAnnotation("b")
 	private List<SubHoge> subHogeList;
-
-	@Order(value=2)
-    @CustomAnnotation("b")
-	private List<Integer> intList;
-
-	@Order(value=1)
-    @CustomAnnotation("b")
-	private List<List<Integer>> intList2;
-
 
 	public String getName() {
 		return name;
@@ -58,20 +57,9 @@ public class Hoge {
 		return subHogeList;
 	}
 
-	public List<Integer> getIntList() {
-		return intList;
-	}
-
-	public void setIntList(List<Integer> intList) {
-		this.intList = intList;
-	}
-
 	public void setSubHogeList(List<SubHoge> subHogeList) {
 		this.subHogeList = subHogeList;
 	}
-
-
-
 
 
 }
